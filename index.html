@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DTZ Nuro's Web</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  background:#050505;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  align-items:center;
+  color:#e5e7eb;
+  position:relative;
+  overflow-x:hidden;
+  font-family:'Poppins',sans-serif;
+}
+
+/* Bubbles */
+.bubble{
+  position:absolute;
+  bottom:0;
+  border-radius:50%;
+  background:#00f2ff;
+  opacity:.6;
+  animation:floatUp linear forwards;
+}
+@keyframes floatUp{
+  0%{transform:translateY(0) scale(.5);opacity:.3}
+  50%{opacity:.8}
+  100%{transform:translateY(-150vh) scale(1);opacity:0}
+}
+
+/* Language Popup */
+#langPopup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.95);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  z-index:100;
+}
+#langPopup h2{
+  color:#111;
+  font-size:28px;
+  margin-bottom:50px;
+  opacity:0;
+  animation:fadeDown 1s ease-out forwards;
+}
+.lang-btn{
+  padding:16px 50px;
+  margin:0 20px;
+  font-size:20px;
+  font-weight:bold;
+  background:#00f2ff;
+  color:#000 !important;
+  border:none;
+  border-radius:16px;
+  cursor:pointer;
+  opacity:0;
+  box-shadow:0 0 20px #00f2ff;
+}
+#btn-si{animation:slideFromLeft 1s ease-out 0.5s forwards;}
+#btn-en{animation:slideFromRight 1s ease-out 0.5s forwards;}
+@keyframes fadeDown{
+  from{opacity:0;transform:translateY(-50px);}
+  to{opacity:1;transform:translateY(0);}
+}
+@keyframes slideFromLeft{
+  from{opacity:0;transform:translateX(-100px);}
+  to{opacity:1;transform:translateX(0);}
+}
+@keyframes slideFromRight{
+  from{opacity:0;transform:translateX(100px);}
+  to{opacity:1;transform:translateX(0);}
+}
+.lang-container{display:flex;justify-content:center;}
+
+/* Header */
+header{
+  width:100%;
+  padding:30px 50px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:10;
+}
+.logo{
+  font-family:'Orbitron',sans-serif;
+  font-size:36px;
+  font-weight:900;
+  color:#00f2ff;
+  text-shadow:0 0 20px #00f2ff;
+}
+.contact-btn{
+  padding:12px 40px;
+  background:#00f2ff;
+  color:#000;
+  border-radius:50px;
+  text-decoration:none;
+  font-weight:600;
+  font-size:18px;
+  box-shadow:0 0 20px #00f2ff;
+  transition:0.3s;
+}
+.contact-btn:hover{
+  background:#000;
+  color:#00f2ff;
+  box-shadow:0 0 40px #00f2ff;
+}
+
+/* Main Content */
+.container{
+  max-width:900px;
+  width:100%;
+  padding:40px 20px;
+  text-align:center;
+  position:relative;
+  z-index:1;
+}
+
+/* Nuro's Web Title */
+h1{
+  font-family:'Orbitron',sans-serif;
+  font-size:50px;
+  font-weight:400;
+  color:#00f2ff;
+  text-shadow:0 0 23px #00f2ff;
+  margin:60px 0 100px;
+  letter-spacing:2px;
+}
+
+/* Downloader Buttons */
+.downloader-btn{
+  display:block;
+  width:600px;
+  max-width:90%;
+  margin:40px auto;
+  padding:20px;
+  background:#00f2ff;
+  color:#000;
+  border-radius:50px;
+  text-decoration:none;
+  font-weight:bold;
+  font-size:28px;
+  box-shadow:0 0 10px #00f2ff;
+  transition:0.3s;
+}
+.downloader-btn:hover{
+  background:#000;
+  color:#00f2ff;
+  box-shadow:0 0 40px #00f2ff;
+}
+
+/* Buy Section Title */
+.buy-title{
+  font-size:40px;
+  color:#00f2ff;
+  margin:100px 0 40px;
+  text-shadow:0 0 20px #00f2ff;
+}
+
+/* Buy Box */
+.buy-box{
+  position:relative;
+  width:500px;
+  max-width:90%;
+  margin:0 auto;
+  padding:40px;
+  background:#0b0b0b;
+  border-radius:20px;
+  text-align:center;
+} 
+/* ===== Animated Border ===== */
+@property --angle{
+  syntax:"<angle>";
+  initial-value:0deg;
+  inherits:false;
+}
+
+.buy-box::before,
+.buy-box::after{
+  content:"";
+  position:absolute;
+  inset:-3px;
+  border-radius:20px;
+  background:conic-gradient(
+    from var(--angle),
+    transparent 65%,
+    #00f2ff,
+    #00bcd4,
+    #00f2ff
+  );
+  z-index:-1;
+  animation:spin 3.5s linear infinite;
+}
+
+.buy-box::before{
+  filter:blur(1.4rem);
+  opacity:.75;
+}
+
+@keyframes spin{
+  to{--angle:360deg;}
+}
+
+.buy-box h3{
+  color:#00f2ff;
+  margin-bottom:30px;
+  font-size:24px;
+}
+select{
+  width:100%;
+  padding:16px;
+  background:#000;
+  color:#00f2ff;
+  border:2px solid #00f2ff;
+  border-radius:12px;
+  font-size:18px;
+  margin-bottom:30px;
+  outline:none;
+  box-shadow:0 0 15px #00f2ff;
+}
+.buy-now-btn{
+  padding:16px 60px;
+  background:#00f2ff;
+  color:#000;
+  border:none;
+  border-radius:50px;
+  font-weight:bold;
+  font-size:20px;
+  cursor:pointer;
+  box-shadow:0 0 30px #00f2ff;
+  transition:0.3s;
+}
+.buy-now-btn:hover{
+  background:#000;
+  color:#00f2ff;
+  box-shadow:0 0 60px #00f2ff;
+}
+
+/* RGB Rotating Border for Buy Box */
+.buy-box::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:20px;
+  padding:6px;
+  background:conic-gradient(from 0deg, #ff0000, #ff00ff, #00ffff, #00ff00, #ffff00, #ff0000);
+  mask:linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask-composite:exclude;
+  -webkit-mask-composite:xor;
+  animation:rotate 8s linear infinite;
+}
+@keyframes rotate{
+  to{transform:rotate(360deg);}
+}
+.buy-box .inner{
+  position:relative;
+  z-index:1;
+}
+</style>
+</head>
+<body>
+
+<!-- Bubbles -->
+<script>
+function createBubble(){
+  const b = document.createElement('div');
+  b.className = 'bubble';
+  const size = Math.random() * 10 + 5;
+  b.style.width = b.style.height = size + 'px';
+  b.style.left = Math.random() * 100 + '%';
+  b.style.animationDuration = (Math.random() * 3 + 4) + 's';
+  document.body.appendChild(b);
+  setTimeout(() => b.remove(), 10000);
+}
+setInterval(createBubble, 30);
+</script>
+
+<!-- Language Popup -->
+<div id="langPopup">
+  <h2>භාෂාව තෝරන්න / Select Language</h2>
+  <div class="lang-container">
+    <button id="btn-si" class="lang-btn" onclick="setLang('si')">සිංහල</button>
+    <button id="btn-en" class="lang-btn" onclick="setLang('en')">English</button>
+  </div>
+</div>
+
+<header>
+  <div class="logo">DTZ</div>
+  <a href="https://wa.me/947xxxxxxxxx" class="contact-btn" id="contactText">Contact Us</a>
+</header>
+
+<div class="container">
+  <h1 id="mainTitle">NURO'S WEB</h1>
+
+  <a href="https://yt-download-web-rouge.vercel.app/" class="downloader-btn" id="ytBtn">1. DTZ YT DOWNLOADER</a>
+  <a href="https://dtz-tik-tok-downloader.vercel.app/" class="downloader-btn" id="ttBtn">1. DTZ TT DOWNLOADER</a>
+
+  <div class="buy-title" id="buySectionTitle">BUY SECTION...!</div>
+
+  <div class="buy-box">
+    <div class="inner">
+      <h3 id="selectText">SELECT YOU WANT</h3>
+      <select id="productSelect">
+        <option value="">SELECT</option>
+        <option value="main">MAIN BOT BASE</option>
+        <option value="mini">MINI BOT BASE</option>
+        <option value="cases">CASES</option>
+        <option value="plugins">PLUGINS</option>
+      </select>
+      <button class="buy-now-btn" onclick="buyProduct()" id="buyBtn">BUY</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const texts = {
+  si: {
+    contactText: "Contact Us",
+    mainTitle: "NURO'S WEB",
+    ytBtn: "1. DTZ YT DOWNLOADER",
+    ttBtn: "1. DTZ TT DOWNLOADER",
+    buySectionTitle: "BUY SECTION...!",
+    selectText: "ඔයාට ඕනේ තෝරන්න",
+    buyBtn: "මිලදී ගන්න"
+  },
+  en: {
+    contactText: "Contact Us",
+    mainTitle: "NURO'S WEB",
+    ytBtn: "1. DTZ YT DOWNLOADER",
+    ttBtn: "1. DTZ TT DOWNLOADER",
+    buySectionTitle: "BUY SECTION...!",
+    selectText: "SELECT YOU WANT",
+    buyBtn: "BUY"
+  }
+};
+
+let lang = 'en';
+
+function setLang(l){
+  lang = l;
+  document.getElementById('langPopup').style.display = 'none';
+
+  document.getElementById('contactText').innerText = texts[lang].contactText;
+  document.getElementById('mainTitle').innerText = texts[lang].mainTitle;
+  document.getElementById('ytBtn').innerText = texts[lang].ytBtn;
+  document.getElementById('ttBtn').innerText = texts[lang].ttBtn;
+  document.getElementById('buySectionTitle').innerText = texts[lang].buySectionTitle;
+  document.getElementById('selectText').innerText = texts[lang].selectText;
+  document.getElementById('buyBtn').innerText = texts[lang].buyBtn;
+}
+
+function buyProduct(){
+  const select = document.getElementById('productSelect');
+  if(select.value === ''){
+    alert(lang === 'si' ? 'කරුණාකර product එකක් තෝරන්න' : 'Please select a product');
+    return;
+  }
+  window.location.href = 'https://wa.me/94721017862?text=I%20want%20to%20buy%20' + select.options[select.selectedIndex].text;
+}
+</script>
+
+</body>
+</html>
